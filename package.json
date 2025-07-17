@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node test-full-cv.js"
+    "test": "node test-full-cv.js",
+    "deploy": "fly deploy"
   },
   "keywords": ["latex", "pdf", "tectonic", "microservice", "api"],
   "author": "David Culemann",
