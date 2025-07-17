@@ -23,7 +23,7 @@ This service is designed to be run exclusively with Docker to ensure a consisten
 
     ```bash
     git clone <your-repo-url>
-    cd tectonic-latex
+    cd xelatex-pdf-service
     ```
 
 2.  **Configure Environment Variables**

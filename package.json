@@ -1,14 +1,14 @@
 {
-  "name": "tectonic-latex",
+  "name": "xelatex-pdf",
   "version": "1.0.0",
-  "description": "A microservice for generating LaTeX PDFs using tectonic",
+  "description": "A microservice for generating LaTeX PDFs using xelatex.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "node test-full-cv.js",
     "deploy": "fly deploy"
   },
-  "keywords": ["latex", "pdf", "tectonic", "microservice", "api"],
+  "keywords": ["latex", "pdf", "xelatex", "microservice", "api"],
   "author": "David Culemann",
   "license": "MIT",
   "dependencies": {
