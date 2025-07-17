@@ -30,6 +30,16 @@ app.use(cors({
   credentials: true
 }));
 
+app.use((req, res, next) => {
+	const apiKey = process.env.FLY_API_KEY;
+	if (!apiKey) return next();
+	if (req.headers["x-api-key"] === apiKey) {
+		return next();
+	}
+	res.status(403).json({ error: "Forbidden" });
+});
+
+
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
