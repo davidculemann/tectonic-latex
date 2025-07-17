@@ -8,10 +8,11 @@
     "dev": "nodemon server.js",
     "test": "jest",
     "docker:build": "docker build -t tectonic-latex .",
-    "docker:run": "docker run -p 3000:3000 tectonic-latex"
+    "docker:run": "docker run -p 3000:3000 tectonic-latex",
+    "deploy": "flyctl deploy"
   },
   "keywords": ["latex", "pdf", "tectonic", "microservice", "api"],
-  "author": "",
+  "author": "David Culemann",
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",
