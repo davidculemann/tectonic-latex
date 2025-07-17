@@ -4,7 +4,7 @@ FROM ubuntu:22.04
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 ENV NODE_ENV=production
-ENV PORT=5000
+ENV PORT=5001
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -44,11 +44,11 @@ RUN useradd -r -s /bin/false tectonic \
 # USER tectonic
 
 # Expose port
-EXPOSE 5000
+EXPOSE 5001
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:5000/health || exit 1
+    CMD curl -f http://localhost:5001/health || exit 1
 
 # Start the application
 CMD ["node", "server.js"] 
