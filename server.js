@@ -42,7 +42,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.get('/health', (req, res) => {
   res.json({
     status: 'healthy',
-    service: 'xelatex-latex',
+    service: 'xelatex-pdf-service',
     timestamp: new Date().toISOString(),
     engine: 'XeLaTeX'
   });

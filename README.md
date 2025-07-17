@@ -1,4 +1,4 @@
-# XeLaTeX Microservice
+# XeLaTeX PDF Service
 
 A production-ready microservice for generating PDFs from LaTeX strings using the XeLaTeX engine. Perfect for AI CV and cover letter generation applications that require advanced font support, such as FontAwesome.
 
