@@ -148,3 +148,13 @@ test-output.pdf
 
 # Tectonic cache (if running locally)
 .cache/ 
+
+# tectonic
+target/
+*.log
+
+# testing
+full-cv-test-output.pdf
+
+# env
+.env 
