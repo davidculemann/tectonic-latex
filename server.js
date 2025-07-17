@@ -11,7 +11,7 @@ const compression = require('compression');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-const allowedOrigins = ["https://easycv.vercel.app", "http://localhost:5000", "https://localhost:5000"];
+const allowedOrigins = ["https://easycv.vercel.app", "http://localhost:3000", "https://localhost:3000"];
 
 // Security middleware
 app.use(helmet());
