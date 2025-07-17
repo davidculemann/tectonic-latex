@@ -52,7 +52,7 @@ This microservice provides a robust solution for generating PDFs from LaTeX cont
 
 // Test function
 async function testTectonicAPI() {
-  const API_URL = 'http://localhost:3000';
+  const API_URL = 'http://localhost:5000';
   
   console.log('🧪 Testing Tectonic LaTeX API...\n');
   

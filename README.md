@@ -183,10 +183,10 @@ const LatexCompiler = () => {
 docker build -t tectonic-latex .
 
 # Run container
-docker run -p 3000:3000 tectonic-latex
+docker run -p 5000:5000 tectonic-latex
 
 # Run with custom environment
-docker run -p 3000:3000 \
+docker run -p 5000:5000 \
   -e FRONTEND_URL=http://localhost:5173 \
   -e NODE_ENV=production \
   tectonic-latex

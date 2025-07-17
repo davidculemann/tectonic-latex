@@ -17,7 +17,7 @@ interface LatexCompilerProps {
 }
 
 const LatexCompiler: React.FC<LatexCompilerProps> = ({
-  apiUrl = 'http://localhost:3000',
+  apiUrl = 'http://localhost:5000',
   onPdfGenerated,
   onError
 }) => {
@@ -268,7 +268,7 @@ function LatexCompilerPage() {
     <div>
       <h1>LaTeX to PDF Compiler</h1>
       <LatexCompiler
-        apiUrl="http://localhost:3000" // Your tectonic microservice URL
+        apiUrl="http://localhost:5000" // Your tectonic microservice URL
         onPdfGenerated={handlePdfGenerated}
         onError={handleError}
       />
@@ -314,7 +314,7 @@ ${cvData.skills.split(',').map(skill => `    \\item ${skill.trim()}`).join('\n')
     const latex = generateLatex();
     
     try {
-      const response = await fetch('http://localhost:3000/compile', {
+      const response = await fetch('http://localhost:5000/compile', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -420,13 +420,13 @@ Create a `.env` file in your React project:
 
 ```env
 # .env
-REACT_APP_TECTONIC_API_URL=http://localhost:3000
+REACT_APP_TECTONIC_API_URL=http://localhost:5000
 ```
 
 Then update your components to use the environment variable:
 
 ```tsx
-const apiUrl = process.env.REACT_APP_TECTONIC_API_URL || 'http://localhost:3000';
+const apiUrl = process.env.REACT_APP_TECTONIC_API_URL || 'http://localhost:5000';
 ```
 
 ## 4. Supabase Integration (Optional)
