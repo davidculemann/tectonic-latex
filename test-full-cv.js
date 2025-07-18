@@ -1,5 +1,5 @@
-const fs = require('fs').promises;
-const path = require('path');
+const fs = require("fs").promises;
+const path = require("path");
 
 // Full CV LaTeX document with anonymized data and comprehensive content
 const fullCVLatex = `\\documentclass[letterpaper,11pt]{article}
@@ -168,45 +168,46 @@ const fullCVLatex = `\\documentclass[letterpaper,11pt]{article}
 
 // Test function
 async function testFullCV() {
-  const API_URL = 'http://localhost:5001';
-  
-  console.log('🧪 Testing Full CV Template with XeLaTeX (Fixed)...\n');
-  
+  const API_URL = "http://localhost:5001";
+
+  console.log("🧪 Testing Full CV Template with XeLaTeX (Fixed)...\n");
+
   try {
     // Test health endpoint
-    console.log('1. Testing health endpoint...');
+    console.log("1. Testing health endpoint...");
     const healthResponse = await fetch(`${API_URL}/health`);
     const healthData = await healthResponse.json();
-    console.log('✅ Health check:', healthData);
-    
+    console.log("✅ Health check:", healthData);
+
     // Test full CV compilation
-    console.log('\n2. Testing Full CV LaTeX compilation...');
+    console.log("\n2. Testing Full CV LaTeX compilation...");
     const compileResponse = await fetch(`${API_URL}/compile`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         latex: fullCVLatex,
-        filename: 'full-cv-test-fixed'
-      })
+        filename: "full-cv-test-fixed",
+      }),
     });
-    
+
     if (compileResponse.ok) {
       const pdfBuffer = await compileResponse.arrayBuffer();
-      const outputPath = path.join(__dirname, 'full-cv-test-output.pdf');
+      const outputPath = path.join(__dirname, "full-cv-test-output.pdf");
       await fs.writeFile(outputPath, Buffer.from(pdfBuffer));
       console.log(`✅ PDF generated successfully! Saved to: ${outputPath}`);
-      console.log(`📄 PDF size: ${(pdfBuffer.byteLength / 1024).toFixed(2)} KB`);
+      console.log(
+        `📄 PDF size: ${(pdfBuffer.byteLength / 1024).toFixed(2)} KB`,
+      );
     } else {
       const errorData = await compileResponse.json();
-      console.error('❌ Compilation failed:', errorData);
+      console.error("❌ Compilation failed:", errorData);
     }
-    
   } catch (error) {
-    console.error('❌ Test failed:', error.message);
+    console.error("❌ Test failed:", error.message);
   }
 }
 
 // Run test
-testFullCV(); 
+testFullCV();

@@ -4,16 +4,16 @@ A production-ready microservice for generating PDFs from LaTeX strings using the
 
 ## 🚀 Features
 
--   **Full LaTeX Support**: Compiles complete LaTeX documents using the powerful XeLaTeX engine.
--   **Advanced Font Support**: Natively supports modern fonts and Unicode, including FontAwesome icons.
--   **Secure**: Runs in an isolated Docker container with proper security configurations.
--   **RESTful API**: Simple HTTP endpoints for easy integration with any frontend or backend.
--   **Docker Ready**: Fully containerized for consistent and reliable deployments.
--   **Production Ready**: Includes rate limiting, CORS, security headers, and robust error handling.
+- **Full LaTeX Support**: Compiles complete LaTeX documents using the powerful XeLaTeX engine.
+- **Advanced Font Support**: Natively supports modern fonts and Unicode, including FontAwesome icons.
+- **Secure**: Runs in an isolated Docker container with proper security configurations.
+- **RESTful API**: Simple HTTP endpoints for easy integration with any frontend or backend.
+- **Docker Ready**: Fully containerized for consistent and reliable deployments.
+- **Production Ready**: Includes rate limiting, CORS, security headers, and robust error handling.
 
 ## 📋 Prerequisites
 
--   Docker and Docker Compose
+- Docker and Docker Compose
 
 ## 🛠️ Installation & Setup
 
@@ -47,41 +47,41 @@ This service is designed to be run exclusively with Docker to ensure a consisten
 
 ### Health Check
 
--   **URL**: `/health`
--   **Method**: `GET`
--   **Description**: Checks the health of the service.
--   **Success Response**:
-    -   **Code**: `200 OK`
-    -   **Content**: `{"status":"healthy","service":"xelatex-latex","timestamp":"..."}`
+- **URL**: `/health`
+- **Method**: `GET`
+- **Description**: Checks the health of the service.
+- **Success Response**:
+  - **Code**: `200 OK`
+  - **Content**: `{"status":"healthy","service":"xelatex-latex","timestamp":"..."}`
 
 ### Compile LaTeX to PDF
 
--   **URL**: `/compile`
--   **Method**: `POST`
--   **Headers**: `Content-Type: application/json`
--   **Body**:
+- **URL**: `/compile`
+- **Method**: `POST`
+- **Headers**: `Content-Type: application/json`
+- **Body**:
 
-    ```json
-    {
-      "latex": "\\documentclass{article}\\usepackage{fontawesome}\\begin{document}Hello, \\faIcon{github}!\\end{document}",
-      "filename": "my-document"
-    }
-    ```
+  ```json
+  {
+    "latex": "\\documentclass{article}\\usepackage{fontawesome}\\begin{document}Hello, \\faIcon{github}!\\end{document}",
+    "filename": "my-document"
+  }
+  ```
 
--   **Success Response**:
-    -   **Code**: `200 OK`
-    -   **Content**: A PDF file stream.
-    -   **Headers**:
-        -   `Content-Type: application/pdf`
-        -   `Content-Disposition: attachment; filename="my-document.pdf"`
+- **Success Response**:
+  - **Code**: `200 OK`
+  - **Content**: A PDF file stream.
+  - **Headers**:
+    - `Content-Type: application/pdf`
+    - `Content-Disposition: attachment; filename="my-document.pdf"`
 
 ## 🧪 Testing
 
 The project includes several test scripts to verify the functionality of the service.
 
--   **`test-simple-xelatex.js`**: Compiles a simple "Hello World" document.
--   **`test-fontawesome-xelatex.js`**: Compiles a document with FontAwesome icons.
--   **`test-full-cv.js`**: Compiles a full CV template with complex formatting and icons.
+- **`test-simple-xelatex.js`**: Compiles a simple "Hello World" document.
+- **`test-fontawesome-xelatex.js`**: Compiles a document with FontAwesome icons.
+- **`test-full-cv.js`**: Compiles a full CV template with complex formatting and icons.
 
 To run a test, execute the corresponding script:
 
@@ -96,43 +96,43 @@ This will send a request to the running service and save the generated PDF in th
 Here's an example of how to call the service from a React component:
 
 ```javascript
-import { useState } from 'react';
+import { useState } from "react";
 
 const PDFGenerator = () => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const generatePDF = async (latexContent) => {
     setLoading(true);
-    setError('');
+    setError("");
     try {
-      const response = await fetch('http://localhost:5001/compile', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5001/compile", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           latex: latexContent,
-          filename: 'generated-cv',
+          filename: "generated-cv",
         }),
       });
 
       if (response.ok) {
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         a.href = url;
-        a.download = 'generated-cv.pdf';
+        a.download = "generated-cv.pdf";
         document.body.appendChild(a);
         a.click();
         a.remove();
         window.URL.revokeObjectURL(url);
       } else {
         const errorData = await response.json();
-        setError(errorData.message || 'Failed to generate PDF.');
+        setError(errorData.message || "Failed to generate PDF.");
       }
     } catch (err) {
-      setError('An unexpected error occurred. Please try again.');
+      setError("An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -140,10 +140,13 @@ const PDFGenerator = () => {
 
   return (
     <div>
-      <button onClick={() => generatePDF(/* your LaTeX string */)} disabled={loading}>
-        {loading ? 'Generating...' : 'Download PDF'}
+      <button
+        onClick={() => generatePDF(/* your LaTeX string */)}
+        disabled={loading}
+      >
+        {loading ? "Generating..." : "Download PDF"}
       </button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };
@@ -153,12 +156,12 @@ export default PDFGenerator;
 
 ## 🐛 Troubleshooting
 
--   **CORS Errors**: Ensure the `FRONTEND_URL` in your `.env` file matches the origin of your frontend application.
--   **Compilation Failures**: Check the Docker container logs for detailed error messages from XeLaTeX.
+- **CORS Errors**: Ensure the `FRONTEND_URL` in your `.env` file matches the origin of your frontend application.
+- **Compilation Failures**: Check the Docker container logs for detailed error messages from XeLaTeX.
 
-    ```bash
-    docker-compose logs -f
-    ```
+  ```bash
+  docker-compose logs -f
+  ```
 
 ## 📄 License
 

@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   xelatex-pdf-service:
@@ -22,4 +22,4 @@ services:
 
 volumes:
   texlive-cache:
-    driver: local 
+    driver: local
