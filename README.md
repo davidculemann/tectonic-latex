@@ -1,6 +1,8 @@
 # XeLaTeX PDF Service
 
-A production-ready microservice for generating PDFs from LaTeX strings using the XeLaTeX engine. Perfect for AI CV and cover letter generation applications that require advanced font support, such as FontAwesome.
+A production-ready microservice for generating PDFs from LaTeX strings using the XeLaTeX engine. Perfect for CV and cover letter generation applications that require advanced font support, such as FontAwesome.
+
+I created this specifically for [easycv](https://easycv.vercel.app/) (https://github.com/davidculemann/easycv), where I needed to generate PDFs from LaTeX strings, but it can be used for any other purpose.
 
 ## 🚀 Features
 
