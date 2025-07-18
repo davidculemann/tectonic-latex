@@ -16,12 +16,29 @@ app.use(helmet());
 app.use(compression());
 
 // CORS configuration
-const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
-  credentials: true,
-  optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
+const allowedOrigins = ["https://easycv.vercel.app", "http://localhost:3000", "https://localhost:3000"];
+
+app.use(
+	cors({
+		origin: function (origin, callback) {
+			if (!origin) return callback(null, true);
+			if (allowedOrigins.includes(origin)) {
+				return callback(null, true);
+			} else {
+				return callback(new Error("Not allowed by CORS"));
+			}
+		},
+	}),
+);
+
+app.use((req, res, next) => {
+	const apiKey = process.env.FLY_API_KEY;
+	if (!apiKey) return next();
+	if (req.headers["x-api-key"] === apiKey) {
+		return next();
+	}
+	res.status(403).json({ error: "Forbidden" });
+});
 
 // Rate limiting
 const limiter = rateLimit({
