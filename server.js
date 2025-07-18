@@ -11,6 +11,9 @@ const crypto = require("crypto");
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+// Trust proxy (required for Fly.io)
+app.set('trust proxy', true);
+
 // Security middleware
 app.use(helmet());
 app.use(compression());
