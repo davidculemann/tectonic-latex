@@ -35,6 +35,18 @@ app.use(
   }),
 );
 
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+
+app.get("/health", (req, res) => {
+  res.json({
+    status: "healthy",
+    service: "xelatex-pdf-service",
+    timestamp: new Date().toISOString(),
+    engine: "XeLaTeX",
+  });
+});
+
 app.use((req, res, next) => {
   const apiKey = process.env.FLY_API_KEY;
   if (!apiKey) return next();
@@ -54,20 +66,6 @@ const limiter = rateLimit({
   },
 });
 app.use(limiter);
-
-// Body parsing middleware
-app.use(express.json({ limit: "10mb" }));
-app.use(express.urlencoded({ extended: true, limit: "10mb" }));
-
-// Health check endpoint
-app.get("/health", (req, res) => {
-  res.json({
-    status: "healthy",
-    service: "xelatex-pdf-service",
-    timestamp: new Date().toISOString(),
-    engine: "XeLaTeX",
-  });
-});
 
 // Cleanup function for temporary files
 async function cleanupTempFiles(tempDir) {
