@@ -21,6 +21,7 @@ app.use(compression());
 // CORS configuration
 const allowedOrigins = [
   "https://easycv.vercel.app",
+  "https://jobsprout.ai",
   "http://localhost:3000",
   "https://localhost:3000",
 ];
